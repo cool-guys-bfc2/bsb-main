@@ -1,9 +1,11 @@
 unique_ids:
   assets:
+    bsb-logo.png: '1747568416841886867997717.9082'
     standard-page.html: ZQNVM7GU5LICEESYWNI6QGIEJAMD4YVW
     theme.css: H4EZ37YQICRGKYH3QCW6GNPHVUWU6VJU
   forms:
     Form1: 5KIYSPWBE6M5CA7GC7OMGNHZYLWE67LC
   modules: {}
   scripts: {}
-  server_modules: {}
+  server_modules:
+    Server1: '1747566328404220791851275.45197'
