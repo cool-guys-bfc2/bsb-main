@@ -29,3 +29,17 @@ def get(key):
 def get_all():
   """Return all entries as a dict."""
   return {row['key']: row['value'] for row in app_tables.data.search()}
+
+@anvil.server.callable
+def read(fn):
+  with open(data_files[fn]) as f:
+    text = f.read()
+  return text
+
+@anvil.server.callable
+def write(fn,c):
+  with data_files.editing(fn) as path:
+    # path is now a string path on the filesystem. We can write to it with normal Python tools.
+    # For example:
+    with open(path, "w+") as f:
+      f.write(c)
