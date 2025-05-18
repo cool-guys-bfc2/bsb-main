@@ -43,3 +43,9 @@ def write(fn,c):
     # For example:
     with open(path, "w+") as f:
       f.write(c)
+
+@anvil.server.route("/files/:fn")
+def get_file(fn, **params):
+  with open(data_files['pages/'+fn]) as f:
+    text = f.read()
+  return anvil.server.HttpResponse(200,text)
