@@ -4,6 +4,8 @@ from anvil.files import data_files
 import anvil.server
 import anvil.tables as tables
 from anvil.tables import app_tables
+import datetime
+import anvil.email
 
 @anvil.server.callable
 def submit(name):
@@ -49,3 +51,15 @@ def get_file(fn, **params):
   with open(data_files['pages/'+fn]) as f:
     text = f.read()
   return anvil.server.HttpResponse(200,text)
+@anvil.server.route("/forms/:fn")
+def get_form(fn, **params):
+  return anvil.server.FormResponse(fn)
+@anvil.server.callable
+def email(name, email, feedback):
+  app_tables.feed.add_row(
+                   subject="Feedback from {}".format(name),
+                   text=f"""FeedBack:
+                   Name: {name}
+                   Email address: {email}
+                   Feedback:{feedback}
+                   """)

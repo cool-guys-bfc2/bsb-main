@@ -11,7 +11,6 @@ class Form1(Form1Template):
     existing = anvil.server.call('get', 'name')
     if existing:
       self.name.text = existing
-
   def submit_click(self, **event_args):
     value = self.name.text.strip()
     if not value:

@@ -11,6 +11,17 @@ db_schema:
       type: string
     server: full
     title: data
+  feed:
+    client: none
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: text
+      type: string
+    - admin_ui: {order: 1, width: 200}
+      name: subject
+      type: string
+    server: full
+    title: feed
   files:
     client: none
     columns:
@@ -70,4 +81,7 @@ services:
 - client_config: {allow_signup: true, confirm_email: true, enable_automatically: true, use_email: true, use_token: true}
   server_config: {user_table: users}
   source: /runtime/services/anvil/users.yml
+- client_config: {}
+  server_config: {custom_smtp: false, test_mode: false}
+  source: /runtime/services/anvil/email.yml
 startup_form: Form1
