@@ -69,12 +69,13 @@ def feed(name, email, feedback):
 @anvil.server.callable
 def get_user(property,default=''):
   c=get(str(anvil.users.get_user())+'.'+str(property))
-  if c:
-    return c
-  else:
+  if anvil.users.get_user():
+    if c:
+      return c
+  if c==None and anvil.users.get_user()==None:
     set(str(anvil.users.get_user())+'.'+str(property),default)
     return default
 
 @anvil.server.callable
 def set_user(p,v):
-  set(str(anvil.users.get_user())+'.'+str(property),v)  
+  set(str(anvil.users.get_user())+'.'+str(property),v)
