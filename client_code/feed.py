@@ -1,5 +1,7 @@
 from ._anvil_designer import feedTemplate
 from anvil import *
+import anvil.google.auth, anvil.google.drive
+from anvil.google.drive import app_files
 import anvil.server
 
 import re
@@ -25,7 +27,7 @@ class feed(feedTemplate):
       return
 
     with Notification("Sending feedback...", timeout=None):
-      anvil.server.call('email', name, email, feedback)
+      anvil.server.call('feed', name, email, feedback)
 
     alert("Feedback sent successfully!", title="Thank You")
 

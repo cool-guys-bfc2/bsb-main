@@ -60,6 +60,9 @@ db_schema:
     - admin_ui: {order: 6, width: 200}
       name: signed_up
       type: datetime
+    - admin_ui: {order: 7, width: 200}
+      name: remembered_logins
+      type: simpleObject
     server: full
     title: Users
 metadata: {description: The Best Freinds Comics BSB Main page., logo_img: 'asset:bsb-logo.png', title: BSBMP}
@@ -78,10 +81,13 @@ services:
 - client_config: {}
   server_config: {file_table: files}
   source: /runtime/services/anvil/files.yml
-- client_config: {allow_signup: true, confirm_email: true, enable_automatically: true, use_email: true, use_token: true}
+- client_config: {allow_remember_me: true, allow_signup: true, confirm_email: true, enable_automatically: true, remember_me_days: 1, use_email: true, use_google: true, use_token: true}
   server_config: {user_table: users}
   source: /runtime/services/anvil/users.yml
 - client_config: {}
   server_config: {custom_smtp: false, test_mode: false}
   source: /runtime/services/anvil/email.yml
+- client_config: {}
+  server_config: {}
+  source: /runtime/services/google.yml
 startup_form: Form1

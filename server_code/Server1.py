@@ -1,3 +1,5 @@
+import anvil.google.auth, anvil.google.drive, anvil.google.mail
+from anvil.google.drive import app_files
 import anvil.users
 import anvil.files
 from anvil.files import data_files
@@ -55,7 +57,7 @@ def get_file(fn, **params):
 def get_form(fn, **params):
   return anvil.server.FormResponse(fn)
 @anvil.server.callable
-def email(name, email, feedback):
+def feed(name, email, feedback):
   app_tables.feed.add_row(
                    subject="Feedback from {}".format(name),
                    text=f"""FeedBack:
@@ -63,3 +65,16 @@ def email(name, email, feedback):
                    Email address: {email}
                    Feedback:{feedback}
                    """)
+
+@anvil.server.callable
+def get_user(property,default=''):
+  c=get(str(anvil.users.get_user())+'.'+str(property))
+  if c:
+    return c
+  else:
+    set(str(anvil.users.get_user())+'.'+str(property),default)
+    return default
+
+@anvil.server.callable
+def set_user(p,v):
+  set(str(anvil.users.get_user())+'.'+str(property),v)  
