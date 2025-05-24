@@ -78,4 +78,4 @@ def get_user(property,default=''):
 
 @anvil.server.callable
 def set_user(p,v):
-  set(str(anvil.users.get_user())+'.'+str(property),v)
+  set(str(anvil.users.get_user())+'.'+str(p),v)
