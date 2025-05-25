@@ -10,7 +10,7 @@ class Form1(Form1Template):
     self.init_components(**properties)
 
     # Load existing value for key "name"
-    existing = anvil.server.call('get_user', 'name','UNKNOWN')
+    existing = anvil.server.call('get', 'name')
     if existing:
       self.name.text = existing
       self.name2.text=existing
@@ -20,7 +20,7 @@ class Form1(Form1Template):
       alert("Please enter a name.")
       return
     result = anvil.server.call('set', 'name', value)
-    anvil.server.call('set_user','name',str(value))
+    #anvil.server.call('set_user','name',str(value))
     alert(result)
   def login_click(self, **event_args):
     anvil.users.login_with_form()
